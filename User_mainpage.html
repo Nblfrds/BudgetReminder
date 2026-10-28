@@ -147,7 +147,7 @@
 
             var timetracker = document.getElementById("LiveTimeTracker");
             if (timetracker){
-                if(BudgetType === "weekly"){
+                if(budgetType === "weekly"){
                     timetracker.textContent = "Today is: " + CurrentDay + ", " + now.toLocaleTimeString();
                 } else if (budgetType === "monthly") {
                     var currentWeekOfMonth = Math.ceil(currentDate / 7);
@@ -166,7 +166,7 @@
             if(isPeriodEnd){ {
                 alert("Your budget period has ended. Please review your budget and make necessary adjustments.");
                 if (currentBudget > 0){
-                    alert("You have saved RM"+currentBudget+"You can insert this amounts into your saving account");
+                    alert("You have saved RM"+currentBudget+". You can insert this amounts into your saving account");
                 } else if (currentBudget < 0){
                     alert("You have overspent by RM"+Math.abs(currentBudget)+". Please review your spending more thoughtfully");
                 }
