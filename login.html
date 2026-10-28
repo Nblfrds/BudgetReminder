@@ -58,7 +58,10 @@
             } else if (budgetType[1].checked) {
                 selectedBudgetType = budgetType[1].value; // Monthly
             }
-
+            if(!selectedBudgetType || !username || isNaN(currentBudget)) {
+                alert("Please fill in all fields and select a budget type.");
+                return; // Exit the function if any required field is empty or invalid
+            }
             const userData = {  
                 username: username,
                 currentBudget: currentBudget,
@@ -67,7 +70,7 @@
 
             localStorage.setItem("userData", JSON.stringify(userData));
 
-            // Redirect to User_mainpage.html
+            // Redirect to User_mainpage.html)
             window.location.href = "User_mainpage.html";
         });
     </script>

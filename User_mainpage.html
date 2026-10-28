@@ -43,7 +43,6 @@
         <p></p>
         </div>
     </div>
-    <button id="test">Test</button>
     <script>
         var userData = JSON.parse(localStorage.getItem("userData"));
         var username = userData ? userData.username : null;
@@ -173,8 +172,8 @@
             }
         }
     }
-        setInterval(BudgetClockMonitor, 1000); // Check every second
-        BudgetClockMonitor(); // Initial check
+    setInterval(BudgetClockMonitor, 1000); // Check every second
+    BudgetClockMonitor(); // Initial check
     </script>
 </body>
 </html>
