@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Welcome, User</title>
+</head>
+<body>
+    <h1>Budget Reminder</h1>
+    <h2>By TheZafRun & SleepyGary</h2>
+  
+    <button id="Signinbutton">Sign In</button>
+
+    <div id="Userinput" class="Modal" style="display: none;">
+        <div class="modal-content">
+        <span class="close">&times;</span>
+        <form id="loginForm" method="post">
+            <input type="text" id="username" placeholder="Enter your username">
+            <input type="number" id="currentbudget" placeholder="Enter your budget">
+            <button id="Submit">Submit</button>
+        </form>
+    </div>
+
+     
+    <script>
+        var modal = document.getElementById("Userinput");
+        var btn = document.getElementById("Signinbutton");
+        var span = document.getElementsByClassName("close")[0];
+
+        btn.onclick = function() {
+            modal.style.display = "block";
+        }
+        span.onclick = function() {
+            modal.style.display = "none";
+        }
+        window.onclick = function(event) {
+        if (event.target == modal) {
+        modal.style.display = "none";
+            }
+        }
+        document.getElementById("loginForm").addEventListener("submit", function(event) {
+            event.preventDefault(); // Prevent form submission
+            const username = document.getElementById("username").value;
+            const currentBudget = parseFloat(document.getElementById("currentbudget").value);
+
+            // Store the username in localStorage
+            const userData = {  
+                username: username,
+                currentBudget: currentBudget
+            };
+
+            localStorage.setItem("userData", JSON.stringify(userData));
+
+            // Redirect to User_mainpage.html
+            window.location.href = "User_mainpage.html";
+        });
+    </script>
+</body>
+</html>
