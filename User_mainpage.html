@@ -36,14 +36,23 @@
         <ul id="BudgetHistoryList"></ul>
         </div>
     </div>
+    <div id="BudgetTypeDisplay" class="Modal">
+        <div class="modal-content">
+        <h3>Budget Type</h3>
+        <p></p>
+        </div>
+    </div>
+
     <script>
         var userData = JSON.parse(localStorage.getItem("userData"));
         var username = userData ? userData.username : null;
         var currentBudget = userData ? userData.currentBudget : null;
+        var budgetType = userData ? userData.budgetType : null; 
         var btnIncrease = document.getElementById("IncreaseBudgetButton");
         var btnDecrease = document.getElementById("DecreaseBudgetButton");
         var spanIncrease = document.getElementById("BudgetIncreaseModal").getElementsByClassName("close")[0];
         var spanDecrease = document.getElementById("BudgetDecreaseModal").getElementsByClassName("close")[0];
+        
         
         if (!userData.budgetHistory) {
             userData.budgetHistory = [];
@@ -121,6 +130,11 @@
             document.title = "Welcome, " + username;
         } else {
             document.title = "Welcome, Guest";
+        }
+        if (budgetType) {
+            document.getElementById("BudgetTypeDisplay").getElementsByTagName("p")[0].textContent = "Your budget type is: " + budgetType;
+        } else {
+            document.getElementById("BudgetTypeDisplay").getElementsByTagName("p")[0].textContent = "No budget type selected.";
         }
     </script>
 </body>
