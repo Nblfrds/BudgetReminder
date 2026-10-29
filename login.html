@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Welcome, User</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <h1>Budget Reminder</h1>
@@ -11,11 +12,18 @@
     <button id="Signinbutton">Sign In</button>
 
     <div id="Userinput" class="Modal" style="display: none;">
-        <div class="modal-content">x
+        <div class="modal-content">
         <span class="close">&times;</span>
+
         <form id="loginForm" method="post">
             <input type="text" id="username" placeholder="Enter your username">
             <input type="number" id="currentbudget" placeholder="Enter your budget">
+            <div id="TypeOfBudget">
+            <input type="radio" id="weekly" name="budgetType" value="weekly">
+            <label for="weekly">Weekly Budget</label><br>
+            <input type="radio" id="monthly" name="budgetType" value="monthly">
+            <label for="monthly">Monthly Budget</label><br>
+        </div>
             <button id="Submit">Submit</button>
         </form>
     </div>
@@ -27,6 +35,7 @@
         var modal = document.getElementById("Userinput");
         var btn = document.getElementById("Signinbutton");
         var span = document.getElementsByClassName("close")[0];
+        var budgetType = document.getElementsByName("budgetType");
 
         btn.onclick = function() {
             modal.style.display = "block";
@@ -44,15 +53,26 @@
             const username = document.getElementById("username").value;
             const currentBudget = parseFloat(document.getElementById("currentbudget").value);
 
-            // Store the username in localStorage
+            // Get the selected budget type
+            let selectedBudgetType = null;
+            if (budgetType[0].checked) {
+                selectedBudgetType = budgetType[0].value; // Weekly
+            } else if (budgetType[1].checked) {
+                selectedBudgetType = budgetType[1].value; // Monthly
+            }
+            if(!selectedBudgetType || !username || isNaN(currentBudget)) {
+                alert("Please fill in all fields and select a budget type.");
+                return; // Exit the function if any required field is empty or invalid
+            }
             const userData = {  
                 username: username,
-                currentBudget: currentBudget
+                currentBudget: currentBudget,
+                budgetType: selectedBudgetType // Initialize budgetType as null
             };
 
             localStorage.setItem("userData", JSON.stringify(userData));
 
-            // Redirect to User_mainpage.html
+            // Redirect to User_mainpage.html)
             window.location.href = "User_mainpage.html";
         });
     </script>
